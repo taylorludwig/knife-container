@@ -22,6 +22,10 @@ module KnifeContainer
     include KnifeContainer::Helpers::Berkshelf
     include KnifeContainer::Helpers::Docker
 
+    # Fix for ERROR: Docker::Error::TimeoutError
+    Excon.defaults[:write_timeout] = 3600
+    Excon.defaults[:read_timeout] = 3600
+
     #
     # Generates a short, but random UID for instances.
     #
